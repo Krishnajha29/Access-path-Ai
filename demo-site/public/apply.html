@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Merit Fellowship Portal - Step 4: Application</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+  <div id="mode-banner" class="bg-amber-100 border-b border-amber-300 px-4 py-2 text-xs flex justify-between items-center text-amber-900">
+    <div class="flex items-center gap-2">
+      <span class="font-bold uppercase tracking-wider">Demo Environment:</span>
+      <span id="mode-label">Baseline State (Known Usability & Accessibility Barriers Active)</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a id="toggle-fix-btn" href="?improved=true" class="bg-white border border-amber-400 text-amber-900 px-3 py-1 rounded shadow-sm hover:bg-amber-50 font-medium">Switch to Improved Fix Mode</a>
+    </div>
+  </div>
+
+  <header class="bg-indigo-900 text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center font-bold text-lg border border-indigo-400">NMF</div>
+        <div>
+          <h1 class="font-bold text-xl tracking-tight">National Merit Fellowship 2026</h1>
+          <p class="text-xs text-indigo-200">Department of Higher Education & Research</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm text-indigo-100">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="apply.html" class="hover:text-white font-medium border-b-2 border-white pb-1">Application</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8 flex-1 w-full">
+    <!-- Progress Indicator -->
+    <div id="progress-container" class="mb-8">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+        <span class="font-semibold text-indigo-700">Section 4: Candidate Information Form</span>
+        <span>Step 4 of 5</span>
+      </div>
+      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+        <div class="bg-indigo-600 h-2 w-4/5"></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">Candidate Registration</h2>
+      <p class="text-sm text-slate-500 mb-6">Enter your personal and academic credentials to start the application record.</p>
+
+      <!-- Baseline error container (shown if submitted with empty required fields) -->
+      <div id="error-alert" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-800">
+        <p class="font-semibold">Submission Exception 0x8849</p>
+        <p class="text-xs mt-1">Malformed entity input. Mandatory parameter validation failed across fields.</p>
+      </div>
+
+      <form id="app-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+        <div>
+          <!-- In Baseline: span without label element or for attribute -->
+          <div id="label-name" class="text-sm font-semibold text-slate-700 mb-1">Full Legal Name</div>
+          <input type="text" id="full-name" placeholder="As per matriculation records" value="Aarav Sharma" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-indigo-500 text-sm">
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <div id="label-email" class="text-sm font-semibold text-slate-700 mb-1">Primary Email Address</div>
+            <input type="email" id="email" placeholder="student@university.edu" value="aarav.research@iitd.ac.in" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-indigo-500 text-sm">
+          </div>
+          <div>
+            <div id="label-phone" class="text-sm font-semibold text-slate-700 mb-1">Mobile Contact Number</div>
+            <input type="tel" id="phone" placeholder="10-digit mobile" value="9876543210" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-indigo-500 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <div id="label-discipline" class="text-sm font-semibold text-slate-700 mb-1">Research Discipline Area</div>
+          <select id="discipline" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-indigo-500 text-sm">
+            <option value="cs">Computer Science & Artificial Intelligence</option>
+            <option value="bio">Biotechnology & Genomic Sciences</option>
+            <option value="ee">Electrical Engineering</option>
+            <option value="env">Environmental Sciences</option>
+          </select>
+        </div>
+
+        <!-- Confusing button pairs in baseline: Reset vs Submit -->
+        <div id="form-actions" class="border-t border-slate-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <button type="button" id="reset-btn" onclick="handleReset()" class="w-full md:w-auto px-6 py-2.5 border border-red-300 text-red-700 bg-red-50 hover:bg-red-100 rounded-lg text-sm font-medium transition">
+            Reset Application Form
+          </button>
+          <button type="submit" id="submit-btn" class="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition text-sm">
+            Save &amp; Continue &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 text-xs text-center border-t border-slate-800">
+    <p>AccessPath AI Controlled Usability & Accessibility Testing Benchmark Site</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const isImproved = urlParams.get('improved') === 'true';
+
+    function handleReset() {
+      if (confirm('Clear all entries?')) {
+        document.getElementById('full-name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('full-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !email) {
+        document.getElementById('error-alert').classList.remove('hidden');
+        return;
+      }
+
+      const nextUrl = isImproved ? 'upload.html?improved=true' : 'upload.html';
+      window.location.href = nextUrl;
+    }
+
+    if (isImproved) {
+      document.getElementById('mode-banner').className = "bg-emerald-100 border-b border-emerald-300 px-4 py-2 text-xs flex justify-between items-center text-emerald-900";
+      document.getElementById('mode-label').textContent = "Improved Fix State (Accessible, High-Clarity UI Active)";
+      const toggleBtn = document.getElementById('toggle-fix-btn');
+      toggleBtn.href = "apply.html";
+      toggleBtn.textContent = "Switch to Baseline (Flawed) Mode";
+      toggleBtn.className = "bg-white border border-emerald-400 text-emerald-900 px-3 py-1 rounded shadow-sm hover:bg-emerald-50 font-medium";
+
+      // Fix accessibility: Proper labels and focus rings
+      document.getElementById('label-name').outerHTML = '<label for="full-name" class="block text-sm font-bold text-slate-900 mb-1">Full Legal Name <span class="text-emerald-700">*</span></label>';
+      document.getElementById('label-email').outerHTML = '<label for="email" class="block text-sm font-bold text-slate-900 mb-1">Email Address <span class="text-emerald-700">*</span></label>';
+      document.getElementById('label-phone').outerHTML = '<label for="phone" class="block text-sm font-bold text-slate-900 mb-1">Mobile Phone Number <span class="text-emerald-700">*</span></label>';
+      document.getElementById('label-discipline').outerHTML = '<label for="discipline" class="block text-sm font-bold text-slate-900 mb-1">Research Field <span class="text-emerald-700">*</span></label>';
+
+      // Clean buttons: Remove hazardous primary-colored reset button
+      document.getElementById('reset-btn').style.display = 'none';
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.className = "w-full md:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md transition text-base";
+      submitBtn.innerHTML = "Proceed to Document Upload (Step 5 of 5) &rarr;";
+    }
+  </script>
+</body>
+</html>

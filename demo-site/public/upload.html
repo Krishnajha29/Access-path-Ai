@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Merit Fellowship Portal - Step 5: Document Upload</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+  <div id="mode-banner" class="bg-amber-100 border-b border-amber-300 px-4 py-2 text-xs flex justify-between items-center text-amber-900">
+    <div class="flex items-center gap-2">
+      <span class="font-bold uppercase tracking-wider">Demo Environment:</span>
+      <span id="mode-label">Baseline State (Known Usability & Accessibility Barriers Active)</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a id="toggle-fix-btn" href="?improved=true" class="bg-white border border-amber-400 text-amber-900 px-3 py-1 rounded shadow-sm hover:bg-amber-50 font-medium">Switch to Improved Fix Mode</a>
+    </div>
+  </div>
+
+  <header class="bg-indigo-900 text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center font-bold text-lg border border-indigo-400">NMF</div>
+        <div>
+          <h1 class="font-bold text-xl tracking-tight">National Merit Fellowship 2026</h1>
+          <p class="text-xs text-indigo-200">Department of Higher Education & Research</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm text-indigo-100">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="upload.html" class="hover:text-white font-medium border-b-2 border-white pb-1">Document Upload</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8 flex-1 w-full">
+    <!-- Progress Indicator -->
+    <div id="progress-container" class="mb-8">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+        <span class="font-semibold text-indigo-700">Section 5: Final Document Upload</span>
+        <span>Step 5 of 5</span>
+      </div>
+      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+        <div class="bg-indigo-600 h-2 w-full"></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">Upload Verification Dossier</h2>
+      <p class="text-sm text-slate-500 mb-6">Attach necessary evidentiary credentials before concluding your submission.</p>
+
+      <div id="upload-content">
+        <!-- Baseline: Confusing, ambiguous upload interface -->
+        <div class="border border-slate-200 rounded-lg p-6 bg-slate-50 mb-6">
+          <div class="text-sm font-semibold text-slate-700 mb-2">Upload Attachment 1</div>
+          <p class="text-xs text-slate-400 mb-4">Select candidate file.</p>
+          <input type="file" id="file-input-1" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+        </div>
+
+        <div class="border border-slate-200 rounded-lg p-6 bg-slate-50 mb-6">
+          <div class="text-sm font-semibold text-slate-700 mb-2">Upload Supplementary Record 2</div>
+          <p class="text-xs text-slate-400 mb-4">Required attachment item.</p>
+          <input type="file" id="file-input-2" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+        </div>
+      </div>
+
+      <div id="submission-confirmation" class="hidden mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-900">
+        <h4 class="font-bold">Application Successfully Staged!</h4>
+        <p class="text-xs mt-1">Application Reference No: PMRF-2026-88194. All documents have been registered.</p>
+      </div>
+
+      <!-- Action buttons -->
+      <div id="actions-row" class="border-t border-slate-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <a id="back-link" href="apply.html" class="text-sm text-slate-500 hover:text-slate-800">
+          &larr; Previous Step
+        </a>
+        <button id="final-submit-btn" onclick="handleFinalSubmit()" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition text-sm">
+          Commit Transmission &rarr;
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 text-xs text-center border-t border-slate-800">
+    <p>AccessPath AI Controlled Usability & Accessibility Testing Benchmark Site</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const isImproved = urlParams.get('improved') === 'true';
+
+    function handleFinalSubmit() {
+      document.getElementById('submission-confirmation').classList.remove('hidden');
+      document.getElementById('final-submit-btn').textContent = "Submitted";
+      document.getElementById('final-submit-btn').disabled = true;
+    }
+
+    if (isImproved) {
+      document.getElementById('mode-banner').className = "bg-emerald-100 border-b border-emerald-300 px-4 py-2 text-xs flex justify-between items-center text-emerald-900";
+      document.getElementById('mode-label').textContent = "Improved Fix State (Accessible, High-Clarity UI Active)";
+      const toggleBtn = document.getElementById('toggle-fix-btn');
+      toggleBtn.href = "upload.html";
+      toggleBtn.textContent = "Switch to Baseline (Flawed) Mode";
+      toggleBtn.className = "bg-white border border-emerald-400 text-emerald-900 px-3 py-1 rounded shadow-sm hover:bg-emerald-50 font-medium";
+
+      document.getElementById('back-link').href = "apply.html?improved=true";
+      const submitBtn = document.getElementById('final-submit-btn');
+      submitBtn.className = "px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md transition text-base";
+      submitBtn.innerHTML = "Complete &amp; Submit Application &rarr;";
+
+      // Clear, labeled uploads with accepted formats, size cap, and instructions
+      document.getElementById('upload-content').innerHTML = `
+        <div class="border border-emerald-200 bg-emerald-50/40 rounded-xl p-6 mb-6">
+          <label for="file-degree" class="block font-bold text-slate-900 text-sm mb-1">
+            1. Master's Degree Marksheet / Certificate <span class="text-emerald-700">*</span>
+          </label>
+          <p class="text-xs text-slate-600 mb-3">
+            Clear color scan of your final degree or provisional certificate. <span class="font-semibold text-emerald-800">Accepted format: PDF only. Maximum size: 2 MB.</span>
+          </p>
+          <input type="file" id="file-degree" accept=".pdf" class="block w-full text-sm text-slate-600 file:mr-4 file:py-2.5 file:px-5 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-100 file:text-emerald-800 hover:file:bg-emerald-200 cursor-pointer">
+        </div>
+
+        <div class="border border-emerald-200 bg-emerald-50/40 rounded-xl p-6 mb-6">
+          <label for="file-income" class="block font-bold text-slate-900 text-sm mb-1">
+            2. Tehsildar Income Certificate <span class="text-emerald-700">*</span>
+          </label>
+          <p class="text-xs text-slate-600 mb-3">
+            Income certificate verifying annual income below ₹8 Lakhs. <span class="font-semibold text-emerald-800">Accepted format: PDF or JPG. Maximum size: 2 MB.</span>
+          </p>
+          <input type="file" id="file-income" accept=".pdf,.jpg,.jpeg" class="block w-full text-sm text-slate-600 file:mr-4 file:py-2.5 file:px-5 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-100 file:text-emerald-800 hover:file:bg-emerald-200 cursor-pointer">
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

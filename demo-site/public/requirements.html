@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Merit Fellowship Portal - Step 3: Requirements</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+  <div id="mode-banner" class="bg-amber-100 border-b border-amber-300 px-4 py-2 text-xs flex justify-between items-center text-amber-900">
+    <div class="flex items-center gap-2">
+      <span class="font-bold uppercase tracking-wider">Demo Environment:</span>
+      <span id="mode-label">Baseline State (Known Usability & Accessibility Barriers Active)</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a id="toggle-fix-btn" href="?improved=true" class="bg-white border border-amber-400 text-amber-900 px-3 py-1 rounded shadow-sm hover:bg-amber-50 font-medium">Switch to Improved Fix Mode</a>
+    </div>
+  </div>
+
+  <header class="bg-indigo-900 text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center font-bold text-lg border border-indigo-400">NMF</div>
+        <div>
+          <h1 class="font-bold text-xl tracking-tight">National Merit Fellowship 2026</h1>
+          <p class="text-xs text-indigo-200">Department of Higher Education & Research</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm text-indigo-100">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="eligibility.html" class="hover:text-white">Eligibility</a>
+        <a href="requirements.html" class="hover:text-white font-medium border-b-2 border-white pb-1">Requirements</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8 flex-1 w-full">
+    <!-- Progress Indicator -->
+    <div id="progress-container" class="mb-8">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+        <span class="font-semibold text-indigo-700">Section 3: Mandatory Document Checklist</span>
+        <span>Step 3 of 5</span>
+      </div>
+      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+        <div class="bg-indigo-600 h-2 w-3/5"></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">Pre-Application Document Verification</h2>
+      <p class="text-sm text-slate-500 mb-6">Review all documents required before entering candidate information.</p>
+
+      <div id="req-checklist" class="space-y-4 mb-8">
+        <div class="p-4 border border-slate-200 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs mt-0.5">1</div>
+          <div>
+            <h4 class="font-semibold text-slate-900 text-sm">Undergraduate & Postgraduate Degree Dossier</h4>
+            <p class="text-xs text-slate-500">Degree certificates and cumulative semester marksheets.</p>
+          </div>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs mt-0.5">2</div>
+          <div>
+            <h4 class="font-semibold text-slate-900 text-sm">Revenue Authority Income Certificate</h4>
+            <p class="text-xs text-slate-500">Issued by competent sub-divisional magistrate or revenue officer.</p>
+          </div>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs mt-0.5">3</div>
+          <div>
+            <h4 class="font-semibold text-slate-900 text-sm">Institutional Endorsement Proposal (Form B)</h4>
+            <p class="text-xs text-slate-500">Research synopsis signed by Principal Investigator / Head of Department.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Baseline Barrier: Hidden Next Step inside unlabelled collapsible without ARIA -->
+      <div id="baseline-accordion" class="border border-slate-200 rounded-lg p-4 bg-slate-50 mb-8">
+        <div onclick="toggleHiddenSection()" class="cursor-pointer flex justify-between items-center text-sm font-medium text-slate-700 select-none">
+          <span>Click to disclose candidate authorization protocol &amp; entry link...</span>
+          <span id="accordion-icon">+</span>
+        </div>
+        <div id="hidden-section" class="hidden mt-4 pt-4 border-t border-slate-200">
+          <p class="text-xs text-slate-600 mb-4">
+            By expanding this portal segment, candidate acknowledges statutory compliance with fellowship norms.
+          </p>
+          <a id="baseline-action-btn" href="apply.html" class="inline-flex items-center justify-center px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm text-sm">
+            Launch Portal Submission (Step 4) &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Improved Container (Replaced in improved mode) -->
+      <div id="improved-action-container" class="hidden"></div>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 text-xs text-center border-t border-slate-800">
+    <p>AccessPath AI Controlled Usability & Accessibility Testing Benchmark Site</p>
+  </footer>
+
+  <script>
+    function toggleHiddenSection() {
+      const section = document.getElementById('hidden-section');
+      const icon = document.getElementById('accordion-icon');
+      if (section.classList.contains('hidden')) {
+        section.classList.remove('hidden');
+        icon.textContent = '-';
+      } else {
+        section.classList.add('hidden');
+        icon.textContent = '+';
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const isImproved = urlParams.get('improved') === 'true';
+
+    if (isImproved) {
+      document.getElementById('mode-banner').className = "bg-emerald-100 border-b border-emerald-300 px-4 py-2 text-xs flex justify-between items-center text-emerald-900";
+      document.getElementById('mode-label').textContent = "Improved Fix State (Accessible, High-Clarity UI Active)";
+      const toggleBtn = document.getElementById('toggle-fix-btn');
+      toggleBtn.href = "requirements.html";
+      toggleBtn.textContent = "Switch to Baseline (Flawed) Mode";
+      toggleBtn.className = "bg-white border border-emerald-400 text-emerald-900 px-3 py-1 rounded shadow-sm hover:bg-emerald-50 font-medium";
+
+      // Hide tricky accordion
+      document.getElementById('baseline-accordion').style.display = 'none';
+
+      // Show clear, visible action section
+      const improvedContainer = document.getElementById('improved-action-container');
+      improvedContainer.className = "border-t border-slate-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-4";
+      improvedContainer.innerHTML = `
+        <a href="eligibility.html?improved=true" class="text-sm font-medium text-slate-600 hover:text-slate-900">&larr; Back to Eligibility</a>
+        <a href="apply.html?improved=true" class="inline-flex items-center justify-center px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md transition text-base">
+          Fill Application Details (Step 4 of 5) &rarr;
+        </a>
+      `;
+
+      // Clear document specs with format and size
+      document.getElementById('req-checklist').innerHTML = `
+        <div class="p-4 border border-emerald-200 bg-emerald-50/50 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-emerald-200 flex items-center justify-center text-emerald-800 font-bold text-xs mt-0.5">✓</div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">1. Degree & Marksheets (PDF, under 2 MB)</h4>
+            <p class="text-xs text-slate-600">Scan of your Master's degree passing certificate and final year marksheet.</p>
+          </div>
+        </div>
+        <div class="p-4 border border-emerald-200 bg-emerald-50/50 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-emerald-200 flex items-center justify-center text-emerald-800 font-bold text-xs mt-0.5">✓</div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">2. Income Certificate (PDF, under 2 MB)</h4>
+            <p class="text-xs text-slate-600">Issued within the last 12 months by Tehsildar / Revenue Department.</p>
+          </div>
+        </div>
+        <div class="p-4 border border-emerald-200 bg-emerald-50/50 rounded-lg flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-emerald-200 flex items-center justify-center text-emerald-800 font-bold text-xs mt-0.5">✓</div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">3. Research Proposal / Endorsement (PDF, under 5 MB)</h4>
+            <p class="text-xs text-slate-600">2-page research summary signed by your guide or college head.</p>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

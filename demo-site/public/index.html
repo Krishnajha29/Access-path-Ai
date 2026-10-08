@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Merit Fellowship Portal - Step 1: Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .confusing-link { color: #64748b; font-size: 0.825rem; text-decoration: underline; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+  <!-- Mode Banner -->
+  <div id="mode-banner" class="bg-amber-100 border-b border-amber-300 px-4 py-2 text-xs flex justify-between items-center text-amber-900">
+    <div class="flex items-center gap-2">
+      <span class="font-bold uppercase tracking-wider">Demo Environment:</span>
+      <span id="mode-label">Baseline State (Known Usability & Accessibility Barriers Active)</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a id="toggle-fix-btn" href="?improved=true" class="bg-white border border-amber-400 text-amber-900 px-3 py-1 rounded shadow-sm hover:bg-amber-50 font-medium">Switch to Improved Fix Mode</a>
+    </div>
+  </div>
+
+  <header class="bg-indigo-900 text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center font-bold text-lg border border-indigo-400">NMF</div>
+        <div>
+          <h1 class="font-bold text-xl tracking-tight">National Merit Fellowship 2026</h1>
+          <p class="text-xs text-indigo-200">Department of Higher Education & Research</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm text-indigo-100">
+        <a href="index.html" class="hover:text-white font-medium border-b-2 border-white pb-1">Home</a>
+        <a href="#archives" class="hover:text-white">Circulars</a>
+        <a href="#notifications" class="hover:text-white">Notifications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8 flex-1 w-full">
+    <!-- Progress Indicator (Intentionally unclear in baseline) -->
+    <div id="progress-container" class="mb-8">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+        <span class="font-semibold text-indigo-700">Section 1: General Prospectus</span>
+        <span>Step 1 of 5</span>
+      </div>
+      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+        <div class="bg-indigo-600 h-2 w-1/5"></div>
+      </div>
+    </div>
+
+    <!-- Alert / Distracting elements in baseline -->
+    <div id="distraction-box" class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
+      <p class="font-semibold mb-1">Public Notice No. 492/A/2026</p>
+      <p class="text-xs text-blue-700 leading-relaxed">
+        Admissions, merit allocations, and sub-quota dispensations are governed under Ordinance 12-B. All candidates are advised to verify gazette notifications prior to statutory registration.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">Postgraduate Merit Research Fellowship (PMRF)</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">
+        The National Fellowship awards financial support of ₹35,000/month plus contingency allowances to deserving candidates enrolled in approved STEM & Humanities institutions.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-8">
+        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+          <div class="text-xs text-slate-500 font-medium">Stipend Value</div>
+          <div class="text-xl font-bold text-indigo-900 mt-1">₹35,000 / mo</div>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+          <div class="text-xs text-slate-500 font-medium">Application Deadline</div>
+          <div class="text-xl font-bold text-indigo-900 mt-1">October 31, 2026</div>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+          <div class="text-xs text-slate-500 font-medium">Available Grants</div>
+          <div class="text-xl font-bold text-indigo-900 mt-1">1,250 Seats</div>
+        </div>
+      </div>
+
+      <!-- Problematic Navigation in Baseline: Tiny confusing button or vague text -->
+      <div id="cta-container" class="border-t border-slate-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-slate-500">
+          Review candidate eligibility criteria before proceeding.
+        </div>
+        <div id="cta-button-wrapper">
+          <!-- In Baseline: ambiguous button label 'Read Terms & Proceed' vs clear 'Check Eligibility (Step 2)' -->
+          <a id="next-btn" href="eligibility.html" class="inline-flex items-center justify-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition">
+            Proceed to Verification &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 text-xs text-center border-t border-slate-800">
+    <p>AccessPath AI Controlled Usability & Accessibility Testing Benchmark Site</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const isImproved = urlParams.get('improved') === 'true';
+
+    if (isImproved) {
+      document.getElementById('mode-banner').className = "bg-emerald-100 border-b border-emerald-300 px-4 py-2 text-xs flex justify-between items-center text-emerald-900";
+      document.getElementById('mode-label').textContent = "Improved Fix State (Accessible, High-Clarity UI Active)";
+      const toggleBtn = document.getElementById('toggle-fix-btn');
+      toggleBtn.href = "index.html";
+      toggleBtn.textContent = "Switch to Baseline (Flawed) Mode";
+      toggleBtn.className = "bg-white border border-emerald-400 text-emerald-900 px-3 py-1 rounded shadow-sm hover:bg-emerald-50 font-medium";
+
+      // Improve Next Button
+      const nextBtn = document.getElementById('next-btn');
+      nextBtn.href = "eligibility.html?improved=true";
+      nextBtn.innerHTML = "Check Eligibility &amp; Criteria (Step 2 of 5) &rarr;";
+      nextBtn.className = "inline-flex items-center justify-center px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md transition text-base";
+
+      // Hide distracting jargon box
+      document.getElementById('distraction-box').innerHTML = `
+        <p class="font-semibold text-emerald-900 mb-1">Simple Guidance for Applicants</p>
+        <p class="text-xs text-emerald-800">Follow the 5 clear steps below to prepare your fellowship application. You will check eligibility, review required documents, fill your details, and submit.</p>
+      `;
+      document.getElementById('distraction-box').className = "mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-900";
+    }
+  </script>
+</body>
+</html>
